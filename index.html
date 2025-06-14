@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>EMRE GAY</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000; /* Siyah arka plan */
+      overflow: hidden;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    .title {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 48px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 0 10px #f0f, 0 0 20px #0ff, 0 0 30px #f0f;
+      z-index: 1000;
+    }
+
+    .text {
+      position: absolute;
+      font-size: 22px;
+      font-weight: bold;
+      color: hsl(var(--hue), 100%, 70%);
+      pointer-events: none;
+      animation: float 3s linear forwards;
+      user-select: none;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(0.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="title">EMRE GAY</div>
+
+  <script>
+    function createText() {
+      const text = document.createElement("div");
+      text.className = "text";
+      text.textContent = "EMRE GAY";
+
+      text.style.left = Math.random() * window.innerWidth + "px";
+      text.style.top = (window.innerHeight + 50) + "px";
+      text.style.setProperty('--hue', Math.floor(Math.random() * 360));
+      text.style.fontSize = (Math.random() * 30 + 15) + "px";
+
+      document.body.appendChild(text);
+
+      setTimeout(() => {
+        text.remove();
+      }, 3000);
+    }
+
+    // Bol bol yazı
+    setInterval(() => {
+      for (let i = 0; i < 5; i++) createText();
+    }, 100);
+  </script>
+</body>
+</html>
